@@ -1,0 +1,21 @@
+int ldrPin = A0;      // LDR connected to A0
+int ledPin = 13;      // LED connected to pin 13
+int ldrValue = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  ldrValue = analogRead(ldrPin);  // Read LDR value
+  Serial.println(ldrValue);       // Print to Serial Monitor
+
+  if (ldrValue < 500) {           // Threshold for light/dark
+    digitalWrite(ledPin, HIGH);   // Turn on LED in dark
+  } else {
+    digitalWrite(ledPin, LOW);    // Turn off LED in light
+  }
+
+  delay(200);
+}
